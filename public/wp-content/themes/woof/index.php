@@ -7,6 +7,7 @@ $theme = \Woof\Theme\Skeleton::getInstance();
     <?php $theme->getView()->getHeader();?>
 </head>
 <body>
+    <h1> Configuration board </h1>
 
     <section>
         <h1>Headings 1 </h1>
