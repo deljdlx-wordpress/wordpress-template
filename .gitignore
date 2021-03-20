@@ -32,14 +32,9 @@ public/wp-content/plugins/*
 !public/wp-content/plugins/woow
 !public/wp-content/plugins/woof
 
+
 # wp-content/plugins/sample-plugin/tests
 # wp-content/plugins/sample-plugin/.phpcs.xml.dist
 # wp-content/plugins/sample-plugin/bin
 # wp-content/plugins/sample-plugin/.travis.yml
 # wp-content/plugins/sample-plugin/phpunit.xml.dist
-
-
-
-
-
-

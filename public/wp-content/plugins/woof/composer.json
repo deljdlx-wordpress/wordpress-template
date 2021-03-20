@@ -1,0 +1,14 @@
+{
+    "autoload": {
+        "psr-4": {
+            "Woof\\": "./class"
+        }
+    },
+    "require": {
+        "altorouter/altorouter": "^2.0",
+        "illuminate/database": "^8.29"
+    },
+    "config": {
+        "vendor-dir": "static-vendor"
+    }
+}
