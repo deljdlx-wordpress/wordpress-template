@@ -1,0 +1,1 @@
+console.log('%c' + 'woof.js', 'color: #0bf; font-size: 1rem; background-color:#fff');

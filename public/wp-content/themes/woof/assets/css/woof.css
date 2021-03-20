@@ -1,0 +1,61 @@
+body {
+  font-family: var(--typography-font-family-default);
+  font-size: var(--typography-font-size-default);
+  background-color: var(--color-background-default);
+  color: var(--color-foreground-default);
+
+}
+
+section {
+  border: solid var(--layout-border-default-width) var(--layout-border-default-color);
+  margin: calc(var(--layout-gutter-default) * 2);
+  padding: var(--layout-padding-default);
+}
+
+h1 {
+  font-size: calc(var(--typography-font-size-default) * 3);
+  margin-bottom: calc(var(--layout-gutter-default) * 2);
+}
+
+h2 {
+  font-size: calc(var(--typography-font-size-default) * 2.5);
+  margin-bottom: calc(var(--layout-gutter-default) * 1.5);
+}
+
+h3 {
+  font-size: calc(var(--typography-font-size-default) * 2);
+  margin-bottom: calc(var(--layout-gutter-default) * 1);
+}
+
+h4 {
+  font-size: calc(var(--typography-font-size-default) * 1.5);
+  margin-bottom: calc(var(--layout-gutter-default) * 1);
+}
+
+h5 {
+  font-size: calc(var(--typography-font-size-default) * 1);
+  margin-bottom: calc(var(--layout-gutter-default) * 0.5);
+}
+
+h6 {
+  font-size: calc(var(--typography-font-size-default) * 1);
+  margin-bottom: calc(var(--layout-gutter-default) * 0.5);
+}
+
+
+th, td {
+  border: solid var(--layout-border-default-width) var(--layout-border-default-color);
+  text-align: left;
+  padding: var(--layout-padding-default);
+}
+
+th {
+  color: var(--color-foreground-header-00);
+  font-size: var(--typography-font-size-big);
+  background-color: var(--color-background-header-00);
+}
+
+td {
+  color: var(--color-foreground-00);
+  background-color: var(--color-background-00);
+}
