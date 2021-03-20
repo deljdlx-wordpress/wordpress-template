@@ -91,9 +91,12 @@ task('install', [
     'deploy:symlink',
     'cleanup',
     'success',
-    'build',
 
-    // 'installBDD',
+    'makeSymlink',
+    'composer',
+    'createConfiguration',
+
+    // 'createBDD',
 
     'installWordpress',
     'buildHtaccess',
@@ -106,11 +109,36 @@ task('install', [
 ]);
 
 
-task('build', [
+task('installAll', [
+    'installRequirements',
+    'loadConfiguration',
+    'deploy:info',
+    'deploy:prepare',
+    'deploy:release',
+    'deploy:update_code',
+    'deploy:writable',
+    'deploy:clear_paths',
+    'deploy:symlink',
+    'cleanup',
+    'success',
+
     'makeSymlink',
     'composer',
     'createConfiguration',
+    'createBDD',
+    'installWordpress',
+    'buildHtaccess',
+    // 'chmod',
+    'activatePlugins',
+    // 'sendAssets',
+    'informations',
 ]);
+
+
+
+
+
+
 
 task('reset', [
     'loadConfiguration',
@@ -188,6 +216,7 @@ before('createConfiguration', 'loadConfiguration');
 
 
 task('makeSymlink', function () {
+    writeln('Create symlink : "{{current_release_filepath}}" to "{{site_filepath}}"' );
     run('ln -s {{current_release_filepath}} {{site_filepath}}');
 });
 
@@ -234,10 +263,32 @@ task('installRequirements', function() {
 });
 
 
-task('installBDD', function() {
+task('createBDD', function() {
     run('mysql -h'.DB_HOST.' -u'.DB_USER.' -p'.DB_PASSWORD.' --execute="CREATE DATABASE '.DB_NAME.' CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"');
 });
-before('installBDD', 'loadConfiguration');
+before('createBDD', 'loadConfiguration');
+
+task('dropTables', function() {
+    run('mysql -h'.DB_HOST.' -u'.DB_USER.' -p'.DB_PASSWORD.' --execute='.
+        'use '.DB_NAME.';' .
+        'DROP TABLE `' . WP_TABLE_PREFIX . 'term_relationships`;'.
+        'DROP TABLE `' . WP_TABLE_PREFIX . 'terms`;'.
+        'DROP TABLE `' . WP_TABLE_PREFIX . 'termmeta`;'.
+        'DROP TABLE `' . WP_TABLE_PREFIX . 'users`;'.
+        'DROP TABLE `' . WP_TABLE_PREFIX . 'usermeta`;'.
+        'DROP TABLE `' . WP_TABLE_PREFIX . 'term_taxonomy`;'.
+        'DROP TABLE `' . WP_TABLE_PREFIX . 'links`;'.
+        'DROP TABLE `' . WP_TABLE_PREFIX . 'comments`;'.
+        'DROP TABLE `' . WP_TABLE_PREFIX . 'commentmeta`;'.
+        'DROP TABLE `' . WP_TABLE_PREFIX . 'posts`;'.
+        'DROP TABLE `' . WP_TABLE_PREFIX . 'postmeta`;'.
+        'DROP TABLE `' . WP_TABLE_PREFIX . 'options`;'.
+    '"');
+});
+
+before('dropTables', 'loadConfiguration');
+
+
 
 
 task('installWordpress', function() {
