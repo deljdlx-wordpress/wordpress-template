@@ -67,9 +67,11 @@ task('deploy', [
 
     'createConfiguration',
 
-    'sendAssets',
+    // 'sendAssets',
+
     'buildHtaccess',
-    'chmod',
+    // 'chmod',
+
     'informations'
 
 ]);
@@ -296,7 +298,7 @@ task('prepareMep', function() {
 
 task('uninstall', function() {
     cd('{{deploy_path}}');
-    run('sudo rm -rf .dep back releases/ shared/ current');
+    run('rm -rf .dep back releases/ shared/ current');
 });
 
 
