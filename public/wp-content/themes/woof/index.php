@@ -7,7 +7,16 @@ $theme = \Woof\Theme\Skeleton::getInstance();
     <?php $theme->getView()->getHeader();?>
 </head>
 <body>
-    <h1> Configuration board </h1>
+
+    <?php
+        $theme->partial('partials/sections/bootstrap');
+    ?>
+
+    <?php
+        $theme->partial('partials/sections/vuejs');
+    ?>
+
+
 
     <section>
         <h1>Headings 1 </h1>

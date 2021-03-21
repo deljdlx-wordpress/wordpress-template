@@ -205,18 +205,31 @@ class Theme extends Skeleton
     {
 
         $this->registerScript(
-            'woof-js',
-            'assets/javascript/woof.js'
+            'common-js',
+            'assets/common/dist/main.js'
         );
         $this->registerCSS(
-            'reset-css',
-            'assets/css/reset.css'
+            'common-css',
+            'assets/common/dist/main.css'
         );
+
+
+        $this->registerScript(
+            'woof-js',
+            'assets/woof/javascript/woof.js'
+        );
+
+        /*
+        $this->registerCSS(
+            'reset-css',
+            'assets/woof/css/reset.css'
+        );
+        */
 
         $this->registerCSS(
             'woof-css',
-            'assets/css/woof.css',
-            ['reset-css']
+            'assets/woof/css/woof.css',
+            ['common-css']
         );
         return $this;
     }

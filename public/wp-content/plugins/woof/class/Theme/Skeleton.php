@@ -5,6 +5,8 @@ namespace Woof\Theme;
 use Woof\Theme\Customizer\Section;
 use Woof\Theme\Customizer\ThemeParameter;
 
+use function Woof\slugify;
+
 class Skeleton
 {
     protected $css = [];
@@ -45,6 +47,14 @@ class Skeleton
 
     public function getModel() {
         return $this->model;
+    }
+
+    public function partial($file, $slug = null, $data = [])
+    {
+        if($slug === null) {
+            $slug = slugify($file);
+        }
+        return get_template_part($file, $slug, $data);
     }
 
 
@@ -126,13 +136,14 @@ class Skeleton
 
 
 
-    protected function registerScript($name, $path, $dependencies = [], $version = '1')
+    protected function registerScript($name, $path, $dependencies = [], $version = null, $inFooter = true)
     {
         wp_enqueue_script(
             $name,
             get_theme_file_uri($path),
             $dependencies,
-            $version
+            $version,
+            $inFooter
         );
     }
 

@@ -30,7 +30,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => '1f290e3f3b09490a8e3daa71f7f96274a113810b',
+    'reference' => 'c83e30420c5722b6760893681fdb1e681b161129',
     'name' => '__root__',
   ),
   'versions' => 
@@ -42,7 +42,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => '1f290e3f3b09490a8e3daa71f7f96274a113810b',
+      'reference' => 'c83e30420c5722b6760893681fdb1e681b161129',
     ),
     'altorouter/altorouter' => 
     array (
@@ -52,6 +52,15 @@ private static $installed = array (
       array (
       ),
       'reference' => '127f6e96998708a31ef32252985bea82e3b03888',
+    ),
+    'cocur/slugify' => 
+    array (
+      'pretty_version' => 'v4.0.0',
+      'version' => '4.0.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '3f1ffc300f164f23abe8b64ffb3f92d35cec8307',
     ),
     'doctrine/inflector' => 
     array (

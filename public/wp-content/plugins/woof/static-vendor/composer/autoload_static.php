@@ -17,6 +17,7 @@ class ComposerStaticInit4b26e9d77eb7703aed69918f01d3a67a
         '60799491728b879e74601d83e38b2cad' => __DIR__ . '/..' . '/illuminate/collections/helpers.php',
         'a1105708a18b76903365ca1c4aa61b02' => __DIR__ . '/..' . '/symfony/translation/Resources/functions.php',
         '72579e7bd17821bb1321b87411366eae' => __DIR__ . '/..' . '/illuminate/support/helpers.php',
+        '1fdfa99bd7e3e71dc61473dd3247fc64' => __DIR__ . '/../..' . '/functions.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -60,6 +61,7 @@ class ComposerStaticInit4b26e9d77eb7703aed69918f01d3a67a
         ),
         'C' => 
         array (
+            'Cocur\\Slugify\\' => 14,
             'Carbon\\' => 7,
         ),
     );
@@ -146,6 +148,10 @@ class ComposerStaticInit4b26e9d77eb7703aed69918f01d3a67a
         'Doctrine\\Inflector\\' => 
         array (
             0 => __DIR__ . '/..' . '/doctrine/inflector/lib/Doctrine/Inflector',
+        ),
+        'Cocur\\Slugify\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/cocur/slugify/src',
         ),
         'Carbon\\' => 
         array (
