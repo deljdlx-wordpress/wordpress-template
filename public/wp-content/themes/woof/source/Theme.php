@@ -86,6 +86,10 @@ class Theme extends Skeleton
             'defaultValue' => 'Header content title',
             'instance' => null,
         ],
+        'content-header-subtitle' => [
+            'defaultValue' => 'Header content subtitle',
+            'instance' => null,
+        ],
         'content-header-image' => [
             'defaultValue' => 'Header image',
             'instance' => null,
@@ -224,6 +228,12 @@ class Theme extends Skeleton
             'section' => 'content',
             'partialSelector' => 'header.customizer.header h2',
         ],
+        'content-header-subtitle' => [
+            'type' => \Woof\Theme\Customizer\TextContent::class,
+            'caption' => 'Header subtitle',
+            'section' => 'content',
+            'partialSelector' => 'header.customizer.header p',
+        ],
 
         'content-header-image' => [
             'type' => \Woof\Theme\Customizer\Image::class,
@@ -241,12 +251,12 @@ class Theme extends Skeleton
 
         $this->registerScript(
             'customizer-js',
-            'assets/common/javascript/wp-customizer.js'
+            'assets/customizer/customizer.js'
         );
 
         $this->registerCSS(
             'customizer-css',
-            'assets/common/css/customizer.css'
+            'assets/customizer/customizer.css'
         );
         return $this;
     }

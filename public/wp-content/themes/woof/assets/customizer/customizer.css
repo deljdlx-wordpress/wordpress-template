@@ -22,3 +22,13 @@ header.customizer h2 .customize-partial-edit-shortcut {
   right: -50px;
   top : 10px;
 }
+
+header.customizer p {
+  padding-left: 50px;
+  position: relative;
+}
+
+header.customizer p .customize-partial-edit-shortcut {
+  left: 40px;
+  top : 0px;
+}
