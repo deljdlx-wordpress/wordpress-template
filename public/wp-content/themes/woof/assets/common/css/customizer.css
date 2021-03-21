@@ -1,9 +1,24 @@
+body {
+  /* background-color: #ffa !important;*/
+}
+
+header.customizer {
+  position: relative;
+}
+
+
 header.customizer h2 {
   display: inline-block;
   position: relative;
 }
 
 header.customizer .customize-partial-edit-shortcut {
+  right: 10px;
+  bottom : 40px;
+}
+
+
+header.customizer h2 .customize-partial-edit-shortcut {
   right: -50px;
-  top : 5px;
+  top : 10px;
 }

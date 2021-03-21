@@ -1,25 +1,21 @@
 <?php
 
 namespace Woof\Theme\Customizer;
-/**
- * Contains methods for customizing the theme customization screen.
- *
- * @link http://codex.wordpress.org/
- * @since MyTheme 1.0
- */
 
-class Image extends Customizer
+
+use WP_Customize_Image_Control;
+
+class Image extends CSSVariable
 {
-    const MOD_NAME = 'image';
-
-
-    protected $caption = 'Choose an image';
+    protected $type = WP_Customize_Image_Control::class;
 
 
     public function register()
     {
         parent::register();
-        add_action('wp_footer', [$this, 'generateJS'], 100);
+
+        // add_action('wp_head', [$this, 'generateCSS']);
+        // add_action('wp_footer', [$this, 'generateJS'], 100);
     }
 
 
@@ -37,66 +33,26 @@ class Image extends Customizer
      */
     public function hookRegister($wp_customizer)
     {
-        // parent::hookRegister($wp_customizer);
-
-
-        //2. Register new settings to the WP database...
-        $this->customizer->add_setting(
-            $this->getName(), //No need to use a SERIALIZED name, as `theme_mod` settings already live under one db record
-            [
-                'default' => $this->getDefaultValue(), //Default setting/value to save
-                'type' => 'theme_mod', //Is this an 'option' or a 'theme_mod'?
-                'capability' => 'edit_theme_options', //Optional. Special permissions for accessing this setting.
-                'transport' => 'postMessage', //What triggers a refresh of the setting? 'refresh' or 'postMessage' (instant)?
-            ]
-        );
-
-
-        //$test = new \WP_Customize_Widgets()
-
-        $this->customizer->add_control(new \WP_Customize_Image_Control( //Instantiate the color control class
-            $this->customizer, //Pass the $wp_customize object (required)
-            $this->getName(), //Set a unique ID for the control
-            [
-                'label' => __($this->getCaption()), //Admin-visible name of the control
-                'settings' => $this->getName(), //Which setting to load and manipulate (serialized is okay)
-                'priority' => 10, //Determines the order this control appears in for the specified section
-                'section' => $this->getSectionId(), //ID of the section this control should render in (can be one of yours, or a WordPress default section)
-            ]
-        ));
+        parent::hookRegister($wp_customizer);
 
 
         $this->customizer->selective_refresh->add_partial(
             $this->getName(), [
-            'selector' => $this->getPreviewQuerySelector(),
-            'container_inclusive' => true,
-            'fallback_refresh'    => false,  // Prevents refresh loop when document does not contain selector
-           /*
-           'render_callback' => function() {
-
-                // return 'hello world';
-               // return get_theme_mod(static::MOD_NAME);
-           },
-           */
+                'selector' => '.theme-mod-'.static::MOD_NAME,
+                'container_inclusive' => true,
+                'fallback_refresh' => false,  // Prevents refresh loop when document does not contain selector
+            /*
+            'render_callback' => function() {
+                return '
+                :root {
+                    --color-highlight-00: ' . get_theme_mod(static::MOD_NAME) . ';
+                }
+                ';
+            }
+            */
             ]
         );
+
     }
-
-    public function generateJS()
-    {
-        echo '<script>' . PHP_EOL;
-        echo 'document.addEventListener("DOMContentLoaded", function() {' . PHP_EOL;
-            echo 'wp.customize( "' . $this->getName() . '", function( value ) {' . PHP_EOL;
-                echo 'value.bind( function( newValue ) {' . PHP_EOL;
-                    // echo "console.log(newValue);" . PHP_EOL;
-                    echo $this->getPreviewUpdateCode();
-                    //echo "document.querySelector('.hero__item.set-bg').style.backgroundImage = 'url(' + newValue + ')';"  . PHP_EOL;
-                echo "});" . PHP_EOL;
-            echo "});" . PHP_EOL;
-        echo "});" . PHP_EOL;
-        echo '</script>' . PHP_EOL;
-    }
-
-
 
 }

@@ -4,28 +4,9 @@ namespace Woof\Theme\Customizer;
 
 use WP_Customize_Color_Control;
 
-/**
- * Contains methods for customizing the theme customization screen.
- *
- * @link http://codex.wordpress.org/
- * @since MyTheme 1.0
- */
-
-// Stsf\Customizer\HomeMainImage
-// Stsf\Customizer\HomeMainImage
-
 class Color extends CSSVariable
 {
     protected $type = WP_Customize_Color_Control::class;
-
-
-    public function register()
-    {
-        parent::register();
-        add_action('wp_head', [$this, 'generateCSS']);
-        add_action('wp_footer', [$this, 'generateJS'], 100);
-    }
-
 
     /**
      * This hooks into 'customize_register' (available as of WP 3.4) and allows

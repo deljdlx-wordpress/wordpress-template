@@ -16,7 +16,6 @@ class Customizer
 
     protected static $customizerIndex = 0;
 
-
     /**
      * @var ThemeParameter
      */
@@ -33,13 +32,15 @@ class Customizer
      */
     protected $section;
 
-    protected $previewQuerySelector = '';
+    protected $partialEditSelector = '';
     protected $previewUpdateCode = '';
 
-    public function __construct(ThemeParameter $parameter, $caption = null)
+    public function __construct(ThemeParameter $parameter, $caption = null, $partialSelector = null)
     {
 
         $this->parameter = $parameter;
+
+        $this->partialEditSelector = $partialSelector;
 
         if($caption !== null) {
             $this->caption = $caption;
@@ -121,7 +122,7 @@ class Customizer
 
 
         add_action('wp_head', [$this, 'generateCSS']);
-        add_action('wp_footer', [$this, 'generateJS'], 100);
+        add_action('customize_preview_init', [$this, 'generateJS'], 100);
         return $this;
     }
 
@@ -132,6 +133,7 @@ class Customizer
         $this->customizer = $wp_customizer;
         $this->registerSetting();
         $this->registerControl();
+        $this->registerPartialEdit();
     }
 
 
@@ -203,5 +205,34 @@ class Customizer
     {
 
     }
+
+    public function registerPartialEdit()
+    {
+
+        if(!$this->partialEditSelector) {
+            return false;
+        }
+
+        $this->customizer->selective_refresh->add_partial(
+            $this->getName(), [
+                'selector' => $this->partialEditSelector,
+                'container_inclusive' => true,
+                'fallback_refresh' => false,  // Prevents refresh loop when document does not contain selector
+                /*
+                'render_callback' => function() {
+                    return '
+                    :root {
+                        --color-highlight-00: ' . get_theme_mod(static::MOD_NAME) . ';
+                    }
+                    ';
+                }
+                */
+            ]
+        );
+
+    }
+
+
+
 
 }

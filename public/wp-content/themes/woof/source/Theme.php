@@ -81,6 +81,16 @@ class Theme extends Skeleton
             'instance' => null,
         ],
 
+
+        'content-header-title' => [
+            'defaultValue' => 'Header content title',
+            'instance' => null,
+        ],
+        'content-header-image' => [
+            'defaultValue' => 'Header image',
+            'instance' => null,
+        ],
+
     ];
 
     protected $customizerSections = [
@@ -98,6 +108,11 @@ class Theme extends Skeleton
             'caption' => 'Colors',
             'order' => 10,
             'description' => 'Theme colors',
+        ],
+        'content' => [
+            'caption' => 'Contents',
+            'order' => 10,
+            'description' => 'Theme content',
         ],
     ];
 
@@ -199,7 +214,42 @@ class Theme extends Skeleton
             'caption' => 'Foreground header color',
             'section' => 'color',
         ],
+
+        //===========================================================
+        // Content
+        //===========================================================
+        'content-header-title' => [
+            'type' => \Woof\Theme\Customizer\TextContent::class,
+            'caption' => 'Header title',
+            'section' => 'content',
+            'partialSelector' => 'header.customizer.header h2',
+        ],
+
+        'content-header-image' => [
+            'type' => \Woof\Theme\Customizer\Image::class,
+            'caption' => 'Header image',
+            'section' => 'content',
+            'partialSelector' => 'header.customizer.header',
+        ],
+
+
     ];
+
+
+    public function registerCustomizerAssets()
+    {
+
+        $this->registerScript(
+            'customizer-js',
+            'assets/common/javascript/wp-customizer.js'
+        );
+
+        $this->registerCSS(
+            'customizer-css',
+            'assets/common/css/customizer.css'
+        );
+        return $this;
+    }
 
     public function registerAssets()
     {
@@ -208,6 +258,15 @@ class Theme extends Skeleton
             'common-js',
             'assets/common/dist/main.js'
         );
+
+
+        $this->registerScript(
+            'common-js',
+            'assets/common/dist/main.js'
+        );
+
+
+
         $this->registerCSS(
             'common-css',
             'assets/common/dist/main.css'

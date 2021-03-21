@@ -169,7 +169,7 @@ task('uploads', function() {
     // cd('{{site_filepath}}');
     // run('sudo chmod -R 775 wp-content/themes');
     foreach(get('uploads') as $source) {
-        upload($source, '{{release_path}}' . dirname($source));
+        upload($source, '{{release_path}}/' . dirname($source));
     }
 
 

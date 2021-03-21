@@ -17,8 +17,8 @@ class StringVariable extends Customizer
     public function register()
     {
         parent::register();
-        add_action('wp_head', [$this, 'generateCSS']);
-        add_action('wp_footer', [$this, 'generateJS'], 100);
+        // add_action('wp_head', [$this, 'generateCSS']);
+        // add_action('wp_footer', [$this, 'generateJS'], 100);
     }
 
 

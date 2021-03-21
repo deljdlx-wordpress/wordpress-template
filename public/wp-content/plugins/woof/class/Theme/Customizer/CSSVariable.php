@@ -14,6 +14,7 @@ namespace Woof\Theme\Customizer;
 class CSSVariable extends StringVariable
 {
 
+
     /**
      * This will output the custom WordPress settings to the live theme's WP head.
      *

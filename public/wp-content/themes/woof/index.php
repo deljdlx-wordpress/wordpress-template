@@ -8,6 +8,11 @@ $theme = \Woof\Theme\Skeleton::getInstance();
 </head>
 <body>
 
+
+    <?php
+        $theme->partial('partials/sections/customizer');
+    ?>
+
     <?php
         $theme->partial('partials/sections/bootstrap');
     ?>
@@ -15,8 +20,6 @@ $theme = \Woof\Theme\Skeleton::getInstance();
     <?php
         $theme->partial('partials/sections/vuejs');
     ?>
-
-
 
     <section>
         <h1>Headings 1 </h1>
