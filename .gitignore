@@ -6,6 +6,7 @@ configuration/*
 
 !configuration/Deploy
 configuration/Deploy/*
+!configuration/Deploy/index.html
 !configuration/Deploy/SampleCommon.php
 !configuration/Deploy/SampleRemote.php
 
