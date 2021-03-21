@@ -241,8 +241,6 @@ class Theme extends Skeleton
             'section' => 'content',
             'partialSelector' => 'header.customizer.header',
         ],
-
-
     ];
 
 
@@ -269,19 +267,16 @@ class Theme extends Skeleton
             'assets/common/dist/main.js'
         );
 
-
         $this->registerScript(
             'common-js',
             'assets/common/dist/main.js'
         );
 
 
-
         $this->registerCSS(
             'common-css',
             'assets/common/dist/main.css'
         );
-
 
         $this->registerScript(
             'woof-js',

@@ -13,6 +13,9 @@ $theme = \Woof\Theme\Skeleton::getInstance();
         $theme->partial('partials/sections/customizer');
     ?>
 
+    <section>Hello world</section>
+
+
     <?php
         $theme->partial('partials/sections/bootstrap');
     ?>

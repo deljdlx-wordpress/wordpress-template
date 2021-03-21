@@ -139,11 +139,14 @@ class Plugin
 
     //===============================================================================
 
+    /**
+     * @return $this
+     */
     public function registerRouter()
     {
         $this->router = new \Woof\Routing\Router($this);
         $this->router->register();
-        // $this->registerRoutes();
+        return $this;
     }
 
 
@@ -159,19 +162,22 @@ class Plugin
         return $this->router;
     }
 
+    /**
+     * @return $this
+     */
     public function route()
     {
         $this->router->route();
+        return $this;
     }
 
-
-
+    /**
+     * @return String
+     */
     public function getFilepath()
     {
         return $this->filepath;
     }
-
-
 
 
     //===============================================================================
@@ -179,31 +185,44 @@ class Plugin
     //===============================================================================
 
     // appelé lorsque le plugin est désactivé
+    /**
+     * @return $this
+     */
     public function deactivate()
     {
         $this->flushRoutes();
+        return $this;
     }
 
 
     // appelé lorsque le plugin est activé
+    /**
+     * @return $this
+     */
     public function activate()
     {
-
+        return $this;
     }
 
     // appelé lors de la désinstallation du plugin ⚠️ Attention cette méthode doit être statique (obligation wordpress)
     public static function uninstall()
     {
-
     }
 
+    /**
+     * @return $this
+     */
     public function flushRoutes()
     {
         global $wp_rewrite;
         $wp_rewrite->flush_rules();
+        return $this;
     }
 
     //===========================================================
+    /**
+     * @return $this
+     */
     public function register()
     {
         // https://developer.wordpress.org/reference/functions/register_activation_hook/
@@ -213,6 +232,8 @@ class Plugin
         register_activation_hook(realpath(__FILE__ . '/..'), [$this, 'activate']);
         register_deactivation_hook(realpath(__FILE__ . '/..'), [$this, 'deactivate']);
         register_uninstall_hook(realpath(__FILE__ . '/..'), [static::class, 'uninstall']);
+
+        return $this;
     }
 
 }
