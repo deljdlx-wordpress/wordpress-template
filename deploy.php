@@ -75,6 +75,7 @@ task('deploy', [
     // 'sendAssets',
     'buildHtaccess',
     // 'chmod',
+    'uploads',
     'informations'
 ]);
 // [Optional] If deploy fails automatically unlock.
@@ -164,11 +165,16 @@ task('localUninstall', function() {
 // tâches communes
 //===========================================================
 
-task('sendAssets', function() {
-    cd('{{site_filepath}}');
+task('uploads', function() {
+    // cd('{{site_filepath}}');
     // run('sudo chmod -R 775 wp-content/themes');
+    foreach(get('uploads') as $source) {
+        upload($source, '{{release_path}}' . dirname($source));
+    }
+
+
 });
-before('sendAssets', 'rsync');
+// before('sendAssets', 'rsync');
 
 
 task('loadConfiguration', function() {

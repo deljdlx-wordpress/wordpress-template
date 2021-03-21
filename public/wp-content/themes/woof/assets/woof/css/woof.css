@@ -3,7 +3,6 @@ body {
   font-size: var(--typography-font-size-default);
   background-color: var(--color-background-default);
   color: var(--color-foreground-default);
-
 }
 
 section {
