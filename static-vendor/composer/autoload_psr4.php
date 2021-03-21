@@ -6,4 +6,6 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'Deljdlx\\' => array($baseDir . '/class'),
+    'Configuration\\' => array($baseDir . '/configuration'),
 );

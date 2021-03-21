@@ -4,6 +4,11 @@ configuration/*
 !configuration/00-configuration.sample.php
 !configuration/index.html
 
+!configuration/Deploy
+configuration/Deploy/*
+!configuration/Deploy/SampleCommon.php
+!configuration/Deploy/SampleRemote.php
+
 
 
 # ignorer les dossiers et fichiers nommés ".cache" dans TOUTE l'aboresence

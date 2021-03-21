@@ -10,6 +10,28 @@ class ComposerStaticInitdc07385d82421cb525af28ef73500160
         'eb7e98e63c68d07fafdbd92bdcaa497e' => __DIR__ . '/..' . '/deployer/recipes/autoload.php',
     );
 
+    public static $prefixLengthsPsr4 = array (
+        'D' => 
+        array (
+            'Deljdlx\\' => 8,
+        ),
+        'C' => 
+        array (
+            'Configuration\\' => 14,
+        ),
+    );
+
+    public static $prefixDirsPsr4 = array (
+        'Deljdlx\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/class',
+        ),
+        'Configuration\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/configuration',
+        ),
+    );
+
     public static $classMap = array (
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
     );
@@ -17,6 +39,8 @@ class ComposerStaticInitdc07385d82421cb525af28ef73500160
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
+            $loader->prefixLengthsPsr4 = ComposerStaticInitdc07385d82421cb525af28ef73500160::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitdc07385d82421cb525af28ef73500160::$prefixDirsPsr4;
             $loader->classMap = ComposerStaticInitdc07385d82421cb525af28ef73500160::$classMap;
 
         }, null, ClassLoader::class);

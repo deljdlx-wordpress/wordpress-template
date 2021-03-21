@@ -25,13 +25,13 @@ require __DIR__. '/deploy-configuration.php';
 // fin configuration
 // ===========================================================================
 // Project name
-set('application', APPLICATION_NAME);
+// set('application', APPLICATION_NAME);
 
 // Project repository
-set('repository', GIT_REPOSITORY);
+// set('repository', GIT_REPOSITORY);
 
 // [Optional] Allocate tty for git clone. Default value is false.
-set('git_tty', true);
+// set('git_tty', true);
 
 // Shared files/dirs between deploys
 set('shared_files', []);
@@ -39,21 +39,22 @@ set('shared_dirs', []);
 
 // Writable dirs by web server
 set('writable_dirs', []);
-set('allow_anonymous_stats', false);
+
 
 
 // Tasks =====================================================================
 
-desc('Deploy your project');
-task('deploy', [
+task('build', [
     'loadConfiguration',
     'deploy:info',
     'deploy:prepare',
     // 'deploy:lock',
     'deploy:release',
     'deploy:update_code',
+
     'deploy:shared',
     'deploy:writable',
+
     // 'deploy:vendors',
     'deploy:clear_paths',
     'deploy:symlink',
@@ -62,73 +63,43 @@ task('deploy', [
     'success',
 
     'makeSymlink',
-
     'composer',
-
     'createConfiguration',
+]);
 
+desc('Deploy your project');
+
+task('deploy', [
+    'build',
+    'createConfiguration',
     // 'sendAssets',
-
     'buildHtaccess',
     // 'chmod',
-
     'informations'
-
 ]);
 // [Optional] If deploy fails automatically unlock.
 after('deploy:failed', 'deploy:unlock');
 
 
 task('install', [
-    // 'installRequirements',
-    'loadConfiguration',
-    'deploy:info',
-    'deploy:prepare',
-    'deploy:release',
-    'deploy:update_code',
-    'deploy:writable',
-    'deploy:clear_paths',
-    'deploy:symlink',
-    'cleanup',
-    'success',
-
-    'makeSymlink',
-    'composer',
-    'createConfiguration',
-
-    // 'createBDD',
-
+    'build',
     'installWordpress',
     'buildHtaccess',
     // 'chmod',
     'activatePlugins',
-
     // 'sendAssets',
-
     'informations',
 ]);
 
 
 task('installAll', [
     'installRequirements',
-    'loadConfiguration',
-    'deploy:info',
-    'deploy:prepare',
-    'deploy:release',
-    'deploy:update_code',
-    'deploy:writable',
-    'deploy:clear_paths',
-    'deploy:symlink',
-    'cleanup',
-    'success',
+    'build',
 
-    'makeSymlink',
-    'composer',
-    'createConfiguration',
     'createBDD',
     'installWordpress',
     'buildHtaccess',
-    // 'chmod',
+    'chmod',
     'activatePlugins',
     // 'sendAssets',
     'informations',
@@ -136,15 +107,19 @@ task('installAll', [
 
 
 
-
+task('reinstallAll', [
+    'loadConfiguration',
+    'dropDatabase',
+    'installAll'
+]);
 
 
 
 task('reset', [
     'loadConfiguration',
-    'uninstall',
+    'removeFiles',
     'dropDatabase',
-    'install'
+    'installAll'
 ]);
 
 
@@ -156,7 +131,7 @@ task('installDevelopment', [
     'loadConfiguration',
     'composer',
     'createConfiguration',
-    'installBDD',
+    'createBDD',
     'installWordpress',
     'chmod',
     'buildHtaccess',
@@ -171,7 +146,7 @@ task('resetDevelopment', [
     'composer',
 
     'createConfiguration',
-    'installBDD',
+    'createBDD',
     'installWordpress',
     'chmod',
     'buildHtaccess',
@@ -347,9 +322,9 @@ task('prepareMep', function() {
 
 
 
-task('uninstall', function() {
+task('removeFiles', function() {
     cd('{{deploy_path}}');
-    run('rm -rf .dep back releases/ shared/ current');
+    run('sudo rm -rf .dep back releases/ shared/ current');
 });
 
 

@@ -4,5 +4,11 @@
     },
     "config": {
         "vendor-dir": "static-vendor"
+    },
+    "autoload": {
+        "psr-4": {
+            "Deljdlx\\": "./class",
+            "Configuration\\": "./configuration"
+        }
     }
 }
