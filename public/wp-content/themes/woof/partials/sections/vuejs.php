@@ -1,5 +1,5 @@
 <section>
-    <h2>Vuetify section</h2>
+    <h2>Vuejs + Vuetify section</h2>
     <div class="row">
 
     <div class="col-6">
