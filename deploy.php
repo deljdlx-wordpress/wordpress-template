@@ -249,7 +249,7 @@ task('createBDD', function() {
     invoke('loadConfiguration');
     run('mysql -h'.DB_HOST.' -u'.DB_USER.' -p'.DB_PASSWORD.' --execute="CREATE DATABASE '.DB_NAME.' CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"');
 });
-// before('createBDD', 'loadConfiguration');
+before('createBDD', 'loadConfiguration');
 
 task('dropTables', function() {
     invoke('loadConfiguration');
@@ -269,7 +269,7 @@ task('dropTables', function() {
         'DROP TABLE `' . WP_TABLE_PREFIX . 'options`;'.
     '"');
 });
-// before('dropTables', 'loadConfiguration');
+before('dropTables', 'loadConfiguration');
 
 
 
@@ -277,9 +277,9 @@ task('dropTables', function() {
 task('installWordpress', function() {
     invoke('loadConfiguration');
     cd('{{site_filepath}}');
-    run('wp core install --url="' . WP_HOME . '" --title="'.SITE_NAME.'" --admin_user="'.BO_USER.'" --admin_password="'.BO_PASSWORD.'" --admin_email="'.BO_EMAIL.'" --skip-email;');
+    run('wp core install --url="' . WP_HOME . '" --title="{{SITE_NAME}}" --admin_user="{{BO_USER}}" --admin_password="{{BO_PASSWORD}}" --admin_email="{{BO_EMAIL}}" --skip-email;');
 });
-// before('installWordpress', 'loadConfiguration');
+before('installWordpress', 'loadConfiguration');
 
 
 task('activatePlugins', function() {
@@ -290,11 +290,11 @@ task('activatePlugins', function() {
 });
 
 task('informations', function() {
-    invoke('loadConfiguration');
+    // invoke('loadConfiguration');
     writeln('Wordpress installed : ' . WP_HOME);
     writeln('Backoffice : ' . WP_SITEURL . '/wp-admin');
 });
-// before('informations', 'loadConfiguration');
+before('informations', 'loadConfiguration');
 
 //===========================================================
 

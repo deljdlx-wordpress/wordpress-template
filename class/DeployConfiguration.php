@@ -45,6 +45,13 @@ class DeployConfiguration
             ->set('application', static::APPLICATION_NAME)
             // Project repository
             ->set('repository', static::GIT_REPOSITORY)
+
+            ->set('APPLICATION_NAME', static::APPLICATION_NAME)
+            ->set('SITE_NAME', static::SITE_NAME)
+            ->set('BO_USER', static::BO_USER)
+            ->set('BO_PASSWORD', static::BO_PASSWORD)
+            ->set('BO_EMAIL', static::BO_EMAIL)
+            ->set('WORDPRESS_PUBLIC_FOLDER', static::WORDPRESS_PUBLIC_FOLDER)
         ;
 
         return $this->host;

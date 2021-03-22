@@ -1,6 +1,6 @@
 
     <section class="">
-         <h2>Bootstrap section</h2>
+         <h2>Bootstrap components demo</h2>
 
          <div class="subsection">
             <?php
