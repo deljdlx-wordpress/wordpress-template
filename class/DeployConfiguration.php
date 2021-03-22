@@ -70,7 +70,5 @@ class DeployConfiguration
             ->set('writable_use_sudo', true)
         ;
     }
-
-
-
 }
+

@@ -171,8 +171,6 @@ task('uploads', function() {
     foreach(get('uploads') as $source) {
         upload($source, '{{release_path}}/' . dirname($source));
     }
-
-
 });
 // before('sendAssets', 'rsync');
 
@@ -272,8 +270,6 @@ task('dropTables', function() {
 before('dropTables', 'loadConfiguration');
 
 
-
-
 task('installWordpress', function() {
     invoke('loadConfiguration');
     cd('{{site_filepath}}');
@@ -288,6 +284,7 @@ task('activatePlugins', function() {
     run('composer run activate-plugins');
     // run('composer run activate-theme benouze');
 });
+
 
 task('informations', function() {
     // invoke('loadConfiguration');
