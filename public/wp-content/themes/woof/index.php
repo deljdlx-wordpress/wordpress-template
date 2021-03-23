@@ -13,7 +13,16 @@ $theme = \Woof\Theme\Skeleton::getInstance();
         $theme->partial('partials/sections/customizer');
     ?>
 
-    <section>Hello world</section>
+    <section>
+        <h2>Font awesome</h2>
+        <div class="subsection">
+            <i class="fab fa-500px fa-4x"></i>
+            <i class="fas fa-box-open fa-4x"></i>
+            <i class="fas fa-cat fa-4x"></i>
+
+        </div>
+
+    </section>
 
 
     <?php

@@ -262,33 +262,35 @@ class Theme extends Skeleton
     public function registerAssets()
     {
 
+
         $this->registerScript(
-            'common-js',
-            'assets/common/dist/main.js'
+            'vue-vendor-js',
+            'assets/vuejs/dist/js/chunk-vendors.js'
         );
 
         $this->registerScript(
-            'common-js',
-            'assets/common/dist/main.js'
+            'vue-app-js',
+            'assets/vuejs/dist/js/app.js'
         );
+
 
 
         $this->registerCSS(
-            'common-css',
-            'assets/common/dist/main.css'
+            'vue-vendor-css',
+            'assets/vuejs/dist/css/chunk-vendors.css'
         );
+
+        $this->registerCSS(
+            'vue-app-css',
+            'assets/vuejs/dist/css/app.css'
+        );
+
+
 
         $this->registerScript(
             'woof-js',
             'assets/woof/javascript/woof.js'
         );
-
-        /*
-        $this->registerCSS(
-            'reset-css',
-            'assets/woof/css/reset.css'
-        );
-        */
 
         $this->registerCSS(
             'woof-css',
